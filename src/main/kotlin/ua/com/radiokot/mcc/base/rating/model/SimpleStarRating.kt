@@ -1,6 +1,6 @@
 package ua.com.radiokot.mcc.base.rating.model
 
-data class StarRatingImpl(
+data class SimpleStarRating(
     override val stars: Float,
     override val of: Int,
 ) : StarRating {
