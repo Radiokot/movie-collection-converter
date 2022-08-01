@@ -35,7 +35,7 @@ data class KinopoiskExistingMovieRating(
          * e.g. https://www.kinopoisk.ru/user/13562461/votes/
          */
         fun fromProfileFilmsListItem(item: Element): KinopoiskExistingMovieRating {
-            val dateElement = requireNotNull(item.selectFirst("div.date")) {
+            val dateElement = checkNotNull(item.selectFirst("div.date")) {
                 "Can't find .date element.\n" +
                         "$item"
             }
@@ -47,7 +47,7 @@ data class KinopoiskExistingMovieRating(
                 .atZone(ZoneId.systemDefault())
                 .toInstant()
 
-            val stars = requireNotNull(item.select("div.myVote")) {
+            val stars = checkNotNull(item.select("div.myVote")) {
                 "Can't find .myVote element.\n" +
                         "$item"
             }

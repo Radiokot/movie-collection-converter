@@ -19,7 +19,7 @@ data class KinopoiskExistingMovie(
             // 1 – russian name, 2 – release date.
             val russianNameAndReleaseYearRegex = "^(.+)\\s\\(.*?(\\d{4}).*?\\)\$".toRegex()
 
-            val linkElement = requireNotNull(item.select("div.nameRus a")) {
+            val linkElement = checkNotNull(item.select("div.nameRus a")) {
                 "Can't find link in .nameRus element.\n" +
                         "$item"
             }
@@ -27,7 +27,7 @@ data class KinopoiskExistingMovie(
             val url = linkElement.attr("href")
 
             val russianNameAndReleaseYearMatch =
-                requireNotNull(russianNameAndReleaseYearRegex.find(linkElement.text())) {
+                checkNotNull(russianNameAndReleaseYearRegex.find(linkElement.text())) {
                     "Can't parse name and release year.\n" +
                             "$item"
                 }
@@ -36,7 +36,7 @@ data class KinopoiskExistingMovie(
             val russianName = russianNameAndReleaseYearMatch[1]
             val releaseYear = russianNameAndReleaseYearMatch[2].toInt()
 
-            val englishName = requireNotNull(item.select("div.nameEng")) {
+            val englishName = checkNotNull(item.select("div.nameEng")) {
                 "Can't find .nameEng element.\n" +
                         "$item"
             }

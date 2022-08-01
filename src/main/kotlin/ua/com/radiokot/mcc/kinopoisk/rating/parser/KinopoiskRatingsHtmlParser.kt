@@ -25,7 +25,7 @@ class KinopoiskRatingsHtmlParser {
             "https://bk.kp.yandex.net/"
         )
             .selectFirst("div.profileFilmsList")
-            .let { requireNotNull(it) { "Can't find .profileFilmsList table" } }
+            .let { checkNotNull(it) { "Can't find .profileFilmsList table" } }
             .select("div.item")
             .map(KinopoiskExistingMovieRating.Companion::fromProfileFilmsListItem)
             .sortedBy(KinopoiskExistingMovieRating::date)
