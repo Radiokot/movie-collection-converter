@@ -10,5 +10,5 @@ data class ImdbSearchResult(
     @JsonProperty("l")
     val name: String,
     @JsonProperty("y")
-    val releaseYear: String,
+    val releaseYear: Int,
 )
