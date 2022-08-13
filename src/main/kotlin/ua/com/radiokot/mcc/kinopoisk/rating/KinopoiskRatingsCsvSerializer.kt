@@ -1,9 +1,9 @@
-package ua.com.radiokot.mcc.kinopoisk.rating.parser.serialization
+package ua.com.radiokot.mcc.kinopoisk.rating
 
 import com.fasterxml.jackson.dataformat.csv.CsvMapper
 import com.fasterxml.jackson.dataformat.csv.CsvSchema
 import ua.com.radiokot.mcc.kinopoisk.rating.model.KinopoiskExistingMovieRating
-import ua.com.radiokot.mcc.kinopoisk.rating.parser.serialization.model.KinopoiskExistingMovieRatingCsv
+import ua.com.radiokot.mcc.kinopoisk.rating.model.KinopoiskExistingMovieRatingCsv
 import java.io.InputStream
 import java.io.OutputStream
 

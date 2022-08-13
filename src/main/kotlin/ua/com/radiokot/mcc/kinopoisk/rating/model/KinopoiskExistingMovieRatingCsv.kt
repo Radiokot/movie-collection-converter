@@ -1,14 +1,12 @@
-package ua.com.radiokot.mcc.kinopoisk.rating.parser.serialization.model
+package ua.com.radiokot.mcc.kinopoisk.rating.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import ua.com.radiokot.mcc.base.rating.model.SimpleStarRating
 import ua.com.radiokot.mcc.kinopoisk.movie.model.KinopoiskExistingMovie
-import ua.com.radiokot.mcc.kinopoisk.rating.model.KinopoiskExistingMovieRating
 import ua.com.radiokot.mcc.kinopoisk.util.KinopoiskDate
 import java.time.Instant
 import java.time.ZoneId
-import java.time.ZoneOffset
 
 @JsonPropertyOrder(
     KinopoiskExistingMovieRatingCsv.HEADER_MOVIE_RUSSIAN_NAME,

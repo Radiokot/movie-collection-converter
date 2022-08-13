@@ -2,8 +2,8 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.junit.Assert
 import org.junit.Test
-import ua.com.radiokot.mcc.kinopoisk.rating.parser.KinopoiskRatingsHtmlParser
-import ua.com.radiokot.mcc.kinopoisk.rating.parser.serialization.KinopoiskRatingsCsvSerializer
+import ua.com.radiokot.mcc.kinopoisk.rating.KinopoiskRatingsHtmlParser
+import ua.com.radiokot.mcc.kinopoisk.rating.KinopoiskRatingsCsvSerializer
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File

@@ -1,4 +1,4 @@
-package ua.com.radiokot.mcc.kinopoisk.rating.parser
+package ua.com.radiokot.mcc.kinopoisk.rating
 
 import org.jsoup.Jsoup
 import ua.com.radiokot.mcc.kinopoisk.rating.model.KinopoiskExistingMovieRating
