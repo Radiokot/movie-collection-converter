@@ -6,7 +6,6 @@ import ua.com.radiokot.mcc.base.rating.model.StarRating
 import ua.com.radiokot.mcc.kinopoisk.movie.model.KinopoiskExistingMovie
 import ua.com.radiokot.mcc.kinopoisk.util.KinopoiskDate
 import java.time.Instant
-import java.time.LocalDateTime
 import java.time.ZoneId
 
 data class KinopoiskExistingMovieRating(
@@ -43,9 +42,9 @@ data class KinopoiskExistingMovieRating(
             // Kinopoisk dates are in client's time zone,
             // it's assumed that the capture and the conversion
             // are done on the same computer.
-            val date = KinopoiskDate.formatter.parse(dateElement.text(), LocalDateTime::from)
-                .atZone(ZoneId.systemDefault())
-                .toInstant()
+            val date = KinopoiskDate.formatter
+                .withZone(ZoneId.systemDefault())
+                .parse(dateElement.text(), Instant::from)
 
             val stars = checkNotNull(item.select("div.myVote")) {
                 "Can't find .myVote element.\n" +
