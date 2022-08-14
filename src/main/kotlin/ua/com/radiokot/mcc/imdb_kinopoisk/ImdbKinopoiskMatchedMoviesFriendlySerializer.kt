@@ -15,10 +15,12 @@ import java.io.OutputStream
  */
 class ImdbKinopoiskMatchedMoviesFriendlySerializer(
     private val csvMapper: CsvMapper,
+    columnSeparator: Char = ';'
 ) {
     private val schema: CsvSchema =
         csvMapper
             .schemaFor(ImdbKinopoiskMatchedMovieCsv::class.java)
+            .withColumnSeparator(columnSeparator)
             .withHeader()
 
     // Rows potentially needed manual correction must be on top.

@@ -9,10 +9,12 @@ import java.io.OutputStream
 
 class KinopoiskRatingsFriendlyCsvSerializer(
     private val csvMapper: CsvMapper,
+    columnSeparator: Char = ';'
 ) {
     private val schema: CsvSchema =
         csvMapper
             .schemaFor(KinopoiskExistingMovieRatingCsv::class.java)
+            .withColumnSeparator(columnSeparator)
             .withHeader()
 
     fun write(

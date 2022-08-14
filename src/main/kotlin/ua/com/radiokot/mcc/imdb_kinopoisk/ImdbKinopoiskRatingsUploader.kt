@@ -9,27 +9,21 @@ class ImdbKinopoiskRatingsUploader(
     private val imdbRatingService: ImdbRatingService,
 ) {
     /**
-     * Uploads given [ratings] to IMDB mapping movies using [imdbKinopoiskUrlToIdMap].
-     * If no mapping found for a movie, the rating is skipped.
+     * Uploads given ratings to IMDB using matched title IDs.
      *
-     * @param imdbKinopoiskUrlToIdMap map of Kinopoisk movie URLs associated with IMDB title ID
+     * @param ratingsMatchedWithImdbMovieId Kinopoisk movie ratings associated with IMDB title ID
      */
     fun upload(
-        ratings: Collection<KinopoiskExistingMovieRating>,
-        imdbKinopoiskUrlToIdMap: Map<String, String>,
+        ratingsMatchedWithImdbMovieId: Collection<Pair<KinopoiskExistingMovieRating, String>>,
     ) {
-        ratings.forEach { rating ->
-            val imdbTitleId = imdbKinopoiskUrlToIdMap[rating.movie.url]
-
-            if (imdbTitleId != null) {
-                imdbRatingService.rateTitle(
-                    titleId = imdbTitleId,
-                    rating = ImdbExistingMovieRating
-                        .convertRating(rating.rating)
-                        .stars
-                        .roundToInt()
-                )
-            }
+        ratingsMatchedWithImdbMovieId.forEach { (rating, imdbTitleId) ->
+            imdbRatingService.rateTitle(
+                titleId = imdbTitleId,
+                rating = ImdbExistingMovieRating
+                    .convertRating(rating.rating)
+                    .stars
+                    .roundToInt()
+            )
         }
     }
 }
