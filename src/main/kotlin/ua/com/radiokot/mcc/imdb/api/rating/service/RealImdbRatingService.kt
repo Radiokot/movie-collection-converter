@@ -5,12 +5,10 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import ua.com.radiokot.mcc.util.RequestRateLimiter
 
 class RealImdbRatingService(
-    private val httpClient: OkHttpClient,
+    private val imdbAuthorizedHttpClient: OkHttpClient,
     private val jsonMapper: ObjectMapper,
-    private val rateLimiter: RequestRateLimiter,
 ) : ImdbRatingService {
 
     override fun rateTitle(titleId: String, rating: Int) {
@@ -25,9 +23,7 @@ class RealImdbRatingService(
             .post(bodyString.toRequestBody("application/json".toMediaType()))
             .build()
 
-        rateLimiter.waitBeforeRequest()
-
-        val response = httpClient
+        val response = imdbAuthorizedHttpClient
             .newCall(request)
             .execute()
             .body

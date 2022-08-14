@@ -6,14 +6,12 @@ import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import ua.com.radiokot.mcc.imdb.api.search.model.ImdbSearchResult
-import ua.com.radiokot.mcc.util.RequestRateLimiter
 import ua.com.radiokot.mcc.util.extensions.mapSuccessful
 import java.util.*
 
 class RealImdbSearchService(
-    private val httpClient: OkHttpClient,
-    private val mapper: ObjectMapper,
-    private val rateLimiter: RequestRateLimiter,
+    private val imdbHttpClient: OkHttpClient,
+    private val jsonMapper: ObjectMapper,
 ) : ImdbSearchService {
     override fun search(query: String): Collection<ImdbSearchResult> {
         val normalizedQuery = query.toLowerCase(Locale.ENGLISH)
@@ -27,16 +25,14 @@ class RealImdbSearchService(
             )
             .build()
 
-        rateLimiter.waitBeforeRequest()
-
-        return httpClient
+        return imdbHttpClient
             .newCall(request)
             .execute()
             .body
             .let { checkNotNull(it) { "IMDB search response must have a body" } }
             .byteStream()
-            .let(mapper::readTree)
+            .let(jsonMapper::readTree)
             .get("d")
-            .mapSuccessful(mapper::treeToValue)
+            .mapSuccessful(jsonMapper::treeToValue)
     }
 }

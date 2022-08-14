@@ -39,7 +39,7 @@ class ImdbKinopoiskMatchedMovieCsv(
     ) : this(
         kinopoiskMovieUrl = kinopoiskMovie.url,
         matchType = match.type,
-        kinopoiskMovieName = kinopoiskMovie.russianName,
+        kinopoiskMovieName = kinopoiskMovie.convenientName,
         imdbMatchedMovieName = (match as? ExistingMovieMatch.Found<ImdbExistingMovie>)?.movie?.convenientName,
         imdbMatchedMovieUrl = (match as? ExistingMovieMatch.Found<ImdbExistingMovie>)?.movie?.url,
         imdbMatchedMovieId = (match as? ExistingMovieMatch.Found<ImdbExistingMovie>)?.movie?.id,

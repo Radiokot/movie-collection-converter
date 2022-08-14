@@ -8,6 +8,7 @@ import ua.com.radiokot.mcc.imdb.api.search.service.RealImdbSearchService
 import ua.com.radiokot.mcc.imdb_kinopoisk.ImdbKinopoiskMoviesMatcher
 import ua.com.radiokot.mcc.kinopoisk.rating.KinopoiskRatingsHtmlParser
 import ua.com.radiokot.mcc.util.RequestRateLimiter
+import ua.com.radiokot.mcc.util.RequestRateLimiterInterceptor
 import java.io.File
 
 class ImdbKinopoiskMoviesMatcherIntegrationTest {
@@ -23,10 +24,11 @@ class ImdbKinopoiskMoviesMatcherIntegrationTest {
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
+            .addInterceptor(RequestRateLimiterInterceptor(RequestRateLimiter("IMDB", 100)))
             .build()
 
         val imdbSearchService =
-            RealImdbSearchService(httpClient, ObjectMapper(), RequestRateLimiter("IMDB", 100))
+            RealImdbSearchService(httpClient, ObjectMapper())
 
         val imdbMatcher = ImdbKinopoiskMoviesMatcher(imdbSearchService)
 
