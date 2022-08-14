@@ -1,7 +1,12 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import com.github.ajalt.clikt.core.subcommands
+import ua.com.radiokot.mcc.cli.Mcc
+import ua.com.radiokot.mcc.cli.Parse
+import ua.com.radiokot.mcc.cli.ParseKinopoisk
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
-}
+fun main(args: Array<String>) = Mcc()
+    .subcommands(
+        Parse().subcommands(
+            ParseKinopoisk()
+        )
+    )
+    .main(args)
