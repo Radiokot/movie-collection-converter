@@ -13,13 +13,13 @@ class RealImdbSearchService(
     private val imdbHttpClient: OkHttpClient,
     private val jsonMapper: ObjectMapper,
 ) : ImdbSearchService {
-    override fun search(query: String): Collection<ImdbSearchResult> {
+    override fun searchTitles(query: String): Collection<ImdbSearchResult> {
         val normalizedQuery = query.toLowerCase(Locale.ENGLISH)
 
         val request = Request.Builder()
             .get()
             .url(
-                "https://v3.sg.media-imdb.com/suggestion/_/".toHttpUrl().newBuilder()
+                "https://v3.sg.media-imdb.com/suggestion/titles/_/".toHttpUrl().newBuilder()
                     .addEncodedPathSegment("$normalizedQuery.json")
                     .build()
             )

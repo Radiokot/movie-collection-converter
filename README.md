@@ -6,5 +6,5 @@ An utility that converts one movie collection to another
 - [x] Create Kinopoisk->IMDB movies converter with error correction
 - [x] Apply Kinopoisk ratings to IMDB based on the corrected conversion result
 - [ ] Add retries to the uploading
-- [ ] Fix matching movies with actors
+- [x] Fix matching movies with actors
 - [ ] Make CLI for it

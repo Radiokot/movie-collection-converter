@@ -17,7 +17,7 @@ class ImdbKinopoiskMoviesMatcher(
     }
 
     fun match(movie: KinopoiskExistingMovie): ExistingMovieMatch<ImdbExistingMovie> {
-        val searchResults = imdbSearchService.search(movie.convenientName)
+        val searchResults = imdbSearchService.searchTitles(movie.convenientName)
 
         val exactMatch = searchResults
             .find {

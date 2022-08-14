@@ -7,5 +7,5 @@ interface ImdbSearchService {
      * @return a few search results for the query as if it was entered
      * into the main IMDB search.
      */
-    fun search(query: String): Collection<ImdbSearchResult>
+    fun searchTitles(query: String): Collection<ImdbSearchResult>
 }
