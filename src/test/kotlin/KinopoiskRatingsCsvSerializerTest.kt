@@ -3,7 +3,7 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.junit.Assert
 import org.junit.Test
 import ua.com.radiokot.mcc.kinopoisk.rating.KinopoiskRatingsHtmlParser
-import ua.com.radiokot.mcc.kinopoisk.rating.KinopoiskRatingsCsvSerializer
+import ua.com.radiokot.mcc.kinopoisk.rating.KinopoiskRatingsFriendlyCsvSerializer
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -75,7 +75,7 @@ class KinopoiskRatingsCsvSerializerTest {
 
         val output = ByteArrayOutputStream()
 
-        KinopoiskRatingsCsvSerializer(mapper)
+        KinopoiskRatingsFriendlyCsvSerializer(mapper)
             .write(kpRatings, output)
 
         Assert.assertEquals(
@@ -91,7 +91,7 @@ class KinopoiskRatingsCsvSerializerTest {
         val kpRatings = KinopoiskRatingsHtmlParser()
             .parse(File(kpInput.file))
 
-        val readRatings = KinopoiskRatingsCsvSerializer(mapper)
+        val readRatings = KinopoiskRatingsFriendlyCsvSerializer(mapper)
             .read(ByteArrayInputStream(expectedCsv.toByteArray()))
 
         Assert.assertArrayEquals(

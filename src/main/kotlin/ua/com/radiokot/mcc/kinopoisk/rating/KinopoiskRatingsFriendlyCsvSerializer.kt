@@ -7,11 +7,11 @@ import ua.com.radiokot.mcc.kinopoisk.rating.model.KinopoiskExistingMovieRatingCs
 import java.io.InputStream
 import java.io.OutputStream
 
-class KinopoiskRatingsCsvSerializer(
-    private val mapper: CsvMapper,
+class KinopoiskRatingsFriendlyCsvSerializer(
+    private val csvMapper: CsvMapper,
 ) {
     private val schema: CsvSchema =
-        mapper
+        csvMapper
             .schemaFor(KinopoiskExistingMovieRatingCsv::class.java)
             .withHeader()
 
@@ -19,7 +19,7 @@ class KinopoiskRatingsCsvSerializer(
         ratings: Collection<KinopoiskExistingMovieRating>,
         out: OutputStream
     ) {
-        mapper
+        csvMapper
             .writerFor(KinopoiskExistingMovieRatingCsv::class.java)
             .with(schema)
             .writeValues(out)
@@ -31,7 +31,7 @@ class KinopoiskRatingsCsvSerializer(
     fun read(
         input: InputStream
     ): List<KinopoiskExistingMovieRating> {
-        return mapper
+        return csvMapper
             .readerFor(KinopoiskExistingMovieRatingCsv::class.java)
             .with(schema)
             .readValues<KinopoiskExistingMovieRatingCsv>(input)

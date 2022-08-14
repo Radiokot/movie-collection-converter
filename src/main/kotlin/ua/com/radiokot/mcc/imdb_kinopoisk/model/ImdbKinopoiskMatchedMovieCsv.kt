@@ -50,6 +50,12 @@ class ImdbKinopoiskMatchedMovieCsv(
         match = entry.value
     )
 
+    /**
+     * @return minimal match of Kinopoisk movie URL to IMDB title ID
+     */
+    fun toMinimalPair(): Pair<String, String?> =
+        kinopoiskMovieUrl to imdbMatchedMovieId
+
     companion object {
         const val HEADER_IMDB_MOVIE_ID = "IMDB title ID [Important]"
         const val HEADER_MATCH_TYPE = "Match type"
